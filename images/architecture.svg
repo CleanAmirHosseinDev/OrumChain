@@ -1,100 +1,120 @@
-<svg width="1000" height="750" xmlns="http://www.w3.org/2000/svg">
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
         <style>
-            .title { font: bold 24px sans-serif; }
-            .subtitle { font: bold 16px sans-serif; fill: #555; }
-            .actor { fill: #e3f2fd; stroke: #90caf9; stroke-width: 2; }
-            .contract { fill: #e8f5e9; stroke: #a5d6a7; stroke-width: 2; }
-            .label { font: 14px sans-serif; text-anchor: middle; }
-            .flow-label { font: 11px sans-serif; text-anchor: middle; }
-            .arrow-line { stroke: #616161; stroke-width: 1.5; }
-            .dashed-line { stroke: #9e9e9e; stroke-width: 1.5; stroke-dasharray: 4 4; }
+            .title { font: bold 26px 'Helvetica', sans-serif; fill: #1a237e; }
+            .subtitle { font: bold 18px 'Helvetica', sans-serif; fill: #333; }
+            .label { font: 15px 'Helvetica', sans-serif; text-anchor: middle; fill: #212121; }
+            .flow-label { font: 12px 'Helvetica', sans-serif; text-anchor: middle; fill: #0d47a1; }
+            .data-label { font: italic 11px 'Helvetica', sans-serif; text-anchor: middle; fill: #424242; }
+
+            .actor-box { fill: url(#actorGradient); stroke: #1e88e5; stroke-width: 1.5; }
+            .service-box { fill: url(#serviceGradient); stroke: #43a047; stroke-width: 1.5; }
+            .contract-box { fill: url(#contractGradient); stroke: #f57f17; stroke-width: 1.5; }
+
+            .arrow-line { stroke: #37474f; stroke-width: 2; }
+            .data-flow-line { stroke: #78909c; stroke-width: 1.5; stroke-dasharray: 5 3; }
         </style>
-        <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#616161" />
+        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#37474f" />
         </marker>
+        <filter id="dropShadow" x="-0.2" y="-0.2" width="1.4" height="1.4">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+            <feOffset dx="2" dy="2" result="offsetblur"/>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <linearGradient id="actorGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#bbdefb; stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#e3f2fd; stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="serviceGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#c8e6c9; stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#e8f5e9; stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="contractGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#fff9c4; stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#fffde7; stop-opacity:1" />
+        </linearGradient>
     </defs>
 
-    <rect x="0" y="0" width="1000" height="750" fill="#fcfcfc" />
-    <text x="500" y="40" class="title" text-anchor="middle">BourseChain Architecture</text>
+    <rect x="0" y="0" width="1200" height="800" fill="#f5f5f5" />
+    <text x="600" y="50" class="title" text-anchor="middle">BourseChain - System Architecture</text>
 
-    <!-- Off-Chain Zone -->
-    <rect x="20" y="70" width="470" height="660" fill="#fafafa" stroke="#ddd" stroke-width="1" rx="10" />
-    <text x="255" y="100" class="subtitle" text-anchor="middle">Off-Chain World</text>
-
-    <g id="actor-user">
-        <rect x="50" y="130" width="180" height="60" class="actor" rx="5" />
-        <text x="140" y="165" class="label">User / Investor</text>
-    </g>
-    <g id="actor-custodian">
-        <rect x="50" y="220" width="180" height="60" class="actor" rx="5" />
-        <text x="140" y="255" class="label">Gold Custodian</text>
-    </g>
-    <g id="actor-kyc">
-        <rect x="50" y="310" width="180" height="60" class="actor" rx="5" />
-        <text x="140" y="345" class="label">KYC Provider</text>
-    </g>
-     <g id="actor-relayer">
-        <rect x="50" y="400" width="180" height="60" class="actor" rx="5" />
-        <text x="140" y="435" class="label">zkSync Relayer</text>
+    <!-- Column 1: Actors -->
+    <text x="150" y="100" class="subtitle">Actors</text>
+    <g id="actor-user" transform="translate(60, 130)" filter="url(#dropShadow)">
+        <rect width="180" height="60" class="actor-box" rx="8" />
+        <text x="90" y="38" class="label">User / Investor</text>
     </g>
 
-    <!-- On-Chain Zone -->
-    <rect x="510" y="70" width="470" height="660" fill="#fafafa" stroke="#ddd" stroke-width="1" rx="10" />
-    <text x="745" y="100" class="subtitle" text-anchor="middle">On-Chain World (zkSync L2)</text>
+    <!-- Column 2: Off-Chain Services -->
+    <text x="450" y="100" class="subtitle">Off-Chain Services</text>
+    <g id="service-custodian" transform="translate(360, 220)" filter="url(#dropShadow)">
+        <rect width="180" height="60" class="service-box" rx="8" />
+        <text x="90" y="38" class="label">Gold Custodian</text>
+    </g>
+    <g id="service-kyc" transform="translate(360, 310)" filter="url(#dropShadow)">
+        <rect width="180" height="60" class="service-box" rx="8" />
+        <text x="90" y="38" class="label">KYC Provider</text>
+    </g>
+    <g id="service-relayer" transform="translate(360, 400)" filter="url(#dropShadow)">
+        <rect width="180" height="60" class="service-box" rx="8" />
+        <text x="90" y="38" class="label">zkSync Relayer</text>
+    </g>
 
-    <g id="contract-kyc">
-        <rect x="540" y="130" width="200" height="60" class="contract" rx="5" />
-        <text x="640" y="165" class="label">KYCRegistry</text>
+    <!-- Column 3: On-Chain Contracts -->
+    <text x="850" y="100" class="subtitle">On-Chain Contracts (zkSync)</text>
+    <g id="contract-kyc" transform="translate(750, 130)" filter="url(#dropShadow)">
+        <rect width="220" height="60" class="contract-box" rx="8" />
+        <text x="110" y="38" class="label">KYCRegistry</text>
     </g>
-    <g id="contract-manager">
-        <rect x="540" y="220" width="200" height="60" class="contract" rx="5" />
-        <text x="640" y="255" class="label">CustodyAttestationManager</text>
+    <g id="contract-manager" transform="translate(750, 220)" filter="url(#dropShadow)">
+        <rect width="220" height="60" class="contract-box" rx="8" />
+        <text x="110" y="38" class="label">CustodyAttestationManager</text>
     </g>
-    <g id="contract-token">
-        <rect x="540" y="310" width="200" height="60" class="contract" rx="5" />
-        <text x="640" y="345" class="label">GoldToken (BCG)</text>
+    <g id="contract-token" transform="translate(750, 310)" filter="url(#dropShadow)">
+        <rect width="220" height="60" class="contract-box" rx="8" />
+        <text x="110" y="38" class="label">GoldToken (BCG)</text>
     </g>
-    <g id="contract-oracle">
-        <rect x="540" y="400" width="200" height="60" class="contract" rx="5" />
-        <text x="640" y="435" class="label">OracleAggregator</text>
-    </g>
-    <g id="contract-options">
-        <rect x="540" y="490" width="200" height="120" class="contract" rx="5" />
-        <text x="640" y="525" class="label">OptionFactory</text>
-        <text x="640" y="555" class="label">&amp;</text>
-        <text x="640" y="585" class="label">ClearingHouse</text>
+    <g id="contract-oracle" transform="translate(750, 400)" filter="url(#dropShadow)">
+        <rect width="220" height="60" class="contract-box" rx="8" />
+        <text x="110" y="38" class="label">OracleAggregator</text>
     </g>
 
     <!-- Flows -->
-    <path d="M 140 190 L 140 220" class="arrow-line" marker-end="url(#arrow)" />
-    <text x="170" y="205" class="flow-label">1. Deposit Gold</text>
+    <path d="M 150 190 V 250 H 360" fill="none" class="arrow-line" marker-end="url(#arrow)" />
+    <text x="255" y="235" class="flow-label">1. Deposit Gold</text>
 
-    <path d="M 230 250 L 280 250 L 280 165 L 230 165" class="arrow-line" marker-end="url(#arrow)" />
-    <text x="310" y="205" class="flow-label">2. Get Attestation</text>
+    <path d="M 360 250 H 280 V 175 H 240" fill="none" class="data-flow-line" marker-end="url(#arrow)" />
+    <text x="320" y="195" class="data-label">EIP-712 Attestation</text>
 
-    <path d="M 140 190 C 50 250, 50 300, 140 310" fill="none" class="dashed-line" />
-    <text x="80" y="260" class="flow-label">3. Complete KYC</text>
+    <path d="M 150 190 V 340 H 360" fill="none" class="arrow-line" marker-end="url(#arrow)" />
+    <text x="255" y="325" class="flow-label">2. Complete KYC</text>
 
-    <path d="M 230 340 L 540 165" class="arrow-line" marker-end="url(#arrow)" />
-    <text x="385" y="245" class="flow-label">4. Update Merkle Root</text>
+    <path d="M 540 340 H 650 V 160 H 750" fill="none" class="data-flow-line" marker-end="url(#arrow)" />
+    <text x="650" y="245" class="data-label">Merkle Root</text>
+    <text x="650" y="225" class="flow-label">3. Update Root</text>
 
-    <path d="M 230 160 L 540 160" class="arrow-line" marker-end="url(#arrow)" />
-    <text x="385" y="150" class="flow-label">5. Submit Merkle Proof</text>
+    <path d="M 240 160 H 750" fill="none" class="arrow-line" marker-end="url(#arrow)" />
+    <text x="500" y="150" class="flow-label">4. Submit KYC Proof & Mint Request</text>
 
-    <path d="M 230 165 L 540 250" class="arrow-line" marker-end="url(#arrow)" />
-    <text x="385" y="210" class="flow-label">6. Request Mint</text>
+    <path d="M 750 160 V 250 H 540" fill="none" class="data-flow-line" marker-end="url(#arrow)" />
+    <text x="650" y="195" class="data-label">Merkle Proof</text>
 
-    <path d="M 640 280 L 640 310" class="arrow-line" marker-end="url(#arrow)" />
-    <text x="680" y="295" class="flow-label">7. Mint Tokens</text>
+    <path d="M 750 250 V 250 H 540" fill="none" class="data-flow-line" marker-end="url(#arrow)" />
+    <text x="650" y="280" class="data-label">Attestation</text>
 
-    <path d="M 230 165 L 400 165 L 400 340 L 540 340" class="arrow-line" marker-end="url(#arrow)" />
-    <text x="400" y="190" class="flow-label">8. Burn Tokens for Redemption</text>
+    <path d="M 860 280 V 310" fill="none" class="arrow-line" marker-end="url(#arrow)" />
+    <text x="890" y="295" class="flow-label">5. mint()</text>
 
-    <path d="M 740 340 L 850 340 L 850 550 L 740 550" class="arrow-line" marker-end="url(#arrow)" />
-    <text x="870" y="450" class="flow-label">9. Interact with Options</text>
+    <path d="M 860 370 C 950 450, 950 550, 860 650 C 750 650, 750 450, 860 370" stroke="#b0bec5" stroke-width="1.5" stroke-dasharray="4 4" fill="none" />
+    <text x="960" y="500" class="data-label">Trade / Use in DeFi</text>
 
-    <path d="M 640 460 L 640 490" class="arrow-line" marker-end="url(#arrow)" />
-    <text x="680" y="475" class="flow-label">10. Get Price</text>
+    <path d="M 860 370 V 400" fill="none" class="arrow-line" marker-end="url(#arrow)" />
+    <text x="890" y="385" class="flow-label">6. burn()</text>
 
+    <path d="M 860 310 H 150" fill="none" class="data-flow-line" />
+    <text x="500" y="300" class="data-label">Receive BCG Tokens</text>
 </svg>
