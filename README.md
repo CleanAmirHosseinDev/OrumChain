@@ -4,7 +4,6 @@
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](#)
 [![Solidity Version](https://img.shields.io/badge/solidity-^0.8.17-blue)](#)
 
-این پروژه یک زیرساخت برای توکنیزه کردن گواهی سپرده شمش طلا در بورس کالای ایران بر بستر بلاکچین فراهم می‌کند. هدف اصلی، ایجاد دسترسی شفاف و مدرن به این دارایی برای سرمایه‌گذاران داخلی و بین‌المللی است.
 
 BourseChain provides a robust, secure, and transparent platform for tokenizing Iranian Commodity Exchange (IME) gold warehouse receipts on the zkSync Layer 2 network. Our goal is to bridge traditional commodity markets with the efficiency and global reach of decentralized finance (DeFi).
 
