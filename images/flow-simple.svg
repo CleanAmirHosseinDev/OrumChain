@@ -1,0 +1,46 @@
+<svg width="800" height="120" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style>
+            .box { fill: #f0f4f8; stroke: #b0bec5; stroke-width: 1.5; }
+            .label { font: bold 14px sans-serif; text-anchor: middle; fill: #37474f; }
+            .arrow-line { stroke: #546e7a; stroke-width: 2; }
+        </style>
+        <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#546e7a" />
+        </marker>
+    </defs>
+
+    <g id="flow">
+        <!-- Step 1: Deposit Gold -->
+        <rect x="20" y="30" width="120" height="60" class="box" rx="5" />
+        <text x="80" y="65" class="label">Deposit Gold</text>
+
+        <!-- Arrow 1 -->
+        <path d="M 140 60 L 180 60" class="arrow-line" marker-end="url(#arrow)" />
+
+        <!-- Step 2: Mint Token -->
+        <rect x="180" y="30" width="120" height="60" class="box" rx="5" />
+        <text x="240" y="65" class="label">Mint Token</text>
+
+        <!-- Arrow 2 -->
+        <path d="M 300 60 L 340 60" class="arrow-line" marker-end="url(#arrow)" />
+
+        <!-- Step 3: Trade / Use -->
+        <rect x="340" y="30" width="120" height="60" class="box" rx="5" />
+        <text x="400" y="65" class="label">Trade / Use</text>
+
+        <!-- Arrow 3 -->
+        <path d="M 460 60 L 500 60" class="arrow-line" marker-end="url(#arrow)" />
+
+        <!-- Step 4: Burn Token -->
+        <rect x="500" y="30" width="120" height="60" class="box" rx="5" />
+        <text x="560" y="65" class="label">Burn Token</text>
+
+        <!-- Arrow 4 -->
+        <path d="M 620 60 L 660 60" class="arrow-line" marker-end="url(#arrow)" />
+
+        <!-- Step 5: Redeem Gold -->
+        <rect x="660" y="30" width="120" height="60" class="box" rx="5" />
+        <text x="720" y="65" class="label">Redeem Gold</text>
+    </g>
+</svg>

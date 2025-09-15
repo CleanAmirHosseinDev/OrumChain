@@ -1,0 +1,68 @@
+name: BourseChain CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test-and-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run linter (solhint)
+        run: npm run lint
+
+      - name: Run tests
+        run: npm run test
+
+  slither-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Slither Static Analysis
+        uses: crytic/slither-action@v0.3.0
+        with:
+          solc-remaps: '"@openzeppelin=node_modules/@openzeppelin"'
+
+  # This job is commented out by default. To enable, uncomment the lines
+  # and add the required secrets to your GitHub repository settings.
+  # deploy-testnet:
+  #   needs: [test-and-lint, slither-analysis]
+  #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+  #
+  #     - name: Set up Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '18'
+  #
+  #     - name: Install dependencies
+  #       run: npm install
+  #
+  #     - name: Deploy to zkSync Testnet
+  #       run: npm run deploy:testnet
+  #       env:
+  #         ZKSYNC_TESTNET_RPC_URL: ${{ secrets.ZKSYNC_TESTNET_RPC_URL }}
+  #         DEPLOYER_PRIVATE_KEY: ${{ secrets.DEPLOYER_PRIVATE_KEY }}
+  #         CUSTODIAN_ADDRESS: ${{ secrets.CUSTODIAN_ADDRESS }}
+  #         ORACLE_ADDRESS: ${{ secrets.ORACLE_ADDRESS }}

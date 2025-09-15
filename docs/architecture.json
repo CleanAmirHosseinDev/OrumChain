@@ -1,0 +1,87 @@
+{
+  "actors": [
+    {
+      "id": "user",
+      "name": "User / Investor",
+      "location": "off-chain",
+      "description": "Deposits gold, manages tokens, and interacts with DeFi."
+    },
+    {
+      "id": "custodian",
+      "name": "Gold Custodian",
+      "location": "off-chain",
+      "description": "Stores physical gold and issues signed EIP-712 attestations for minting."
+    },
+    {
+      "id": "kyc_provider",
+      "name": "KYC Provider",
+      "location": "off-chain",
+      "description": "Verifies user identities and publishes Merkle roots to the KYCRegistry."
+    },
+    {
+      "id": "matching_engine",
+      "name": "Off-Chain Matching Engine",
+      "location": "off-chain",
+      "description": "Matches buyers and sellers for the options module before settlement on-chain."
+    },
+    {
+      "id": "relayer",
+      "name": "Relayer / Validator",
+      "location": "off-chain",
+      "description": "Processes transactions on the zkSync L2 network."
+    }
+  ],
+  "contracts": [
+    {
+      "id": "gold_token",
+      "name": "GoldToken (BCG)",
+      "location": "on-chain",
+      "description": "ERC20 token representing 1 gram of gold."
+    },
+    {
+      "id": "kyc_registry",
+      "name": "KYCRegistry",
+      "location": "on-chain",
+      "description": "Stores Merkle root of KYC'd addresses."
+    },
+    {
+      "id": "custody_manager",
+      "name": "CustodyAttestationManager",
+      "location": "on-chain",
+      "description": "Verifies custodian signatures and mints new tokens."
+    },
+    {
+      "id": "oracle_aggregator",
+      "name": "OracleAggregator",
+      "location": "on-chain",
+      "description": "Provides trusted, signed price feeds for gold."
+    },
+    {
+      "id": "option_factory",
+      "name": "OptionFactory",
+      "location": "on-chain",
+      "description": "Creates new option series."
+    },
+    {
+      "id": "clearing_house",
+      "name": "ClearingHouse",
+      "location": "on-chain",
+      "description": "Settles options and manages collateral."
+    }
+  ],
+  "flows": [
+    { "from": "user", "to": "custodian", "label": "1. Deposit Physical Gold" },
+    { "from": "custodian", "to": "user", "label": "2. Receive EIP-712 Attestation" },
+    { "from": "user", "to": "kyc_provider", "label": "3. Complete KYC Process" },
+    { "from": "kyc_provider", "to": "kyc_registry", "label": "4. Update Merkle Root" },
+    { "from": "user", "to": "kyc_registry", "label": "5. Submit Merkle Proof" },
+    { "from": "user", "to": "custody_manager", "label": "6. Request Mint with Attestation" },
+    { "from": "custody_manager", "to": "gold_token", "label": "7. Mint BCG Tokens" },
+    { "from": "user", "to": "gold_token", "label": "8. Trade / Use in DeFi" },
+    { "from": "user", "to": "matching_engine", "label": "9a. Create Option Order" },
+    { "from": "matching_engine", "to": "option_factory", "label": "9b. Create Series On-Chain" },
+    { "from": "clearing_house", "to": "oracle_aggregator", "label": "10. Get Price for Settlement" },
+    { "from": "user", "to": "gold_token", "label": "11. Burn BCG Tokens" },
+    { "from": "gold_token", "to": "custodian", "label": "12. Notify Custodian of Redemption" }
+  ]
+}

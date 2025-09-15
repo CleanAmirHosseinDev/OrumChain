@@ -1,0 +1,100 @@
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style>
+            .title { font: bold 26px sans-serif; fill: #1a237e; }
+            .subtitle { font: bold 18px sans-serif; fill: #333; }
+            .label { font: 15px sans-serif; text-anchor: middle; fill: #212121; }
+            .flow-label { font: 12px sans-serif; text-anchor: middle; fill: #0d47a1; }
+            .data-label { font: italic 11px sans-serif; text-anchor: middle; fill: #424242; }
+            
+            .actor-box { fill: #bbdefb; stroke: #1e88e5; stroke-width: 1.5; }
+            .service-box { fill: #c8e6c9; stroke: #43a047; stroke-width: 1.5; }
+            .contract-box { fill: #fff9c4; stroke: #f57f17; stroke-width: 1.5; }
+
+            .arrow-line { stroke: #37474f; stroke-width: 2; }
+            .data-flow-line { stroke: #78909c; stroke-width: 1.5; stroke-dasharray: 5 3; }
+        </style>
+        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#37474f" />
+        </marker>
+    </defs>
+
+    <rect x="0" y="0" width="1200" height="800" fill="#f5f5f5" />
+    <text x="600" y="50" class="title" text-anchor="middle">BourseChain - System Architecture</text>
+
+    <!-- Column 1: Actors -->
+    <text x="150" y="100" class="subtitle">Actors</text>
+    <g id="actor-user" transform="translate(60, 130)">
+        <rect width="180" height="60" class="actor-box" rx="8" />
+        <text x="90" y="38" class="label">User / Investor</text>
+    </g>
+
+    <!-- Column 2: Off-Chain Services -->
+    <text x="450" y="100" class="subtitle">Off-Chain Services</text>
+    <g id="service-custodian" transform="translate(360, 220)">
+        <rect width="180" height="60" class="service-box" rx="8" />
+        <text x="90" y="38" class="label">Gold Custodian</text>
+    </g>
+    <g id="service-kyc" transform="translate(360, 310)">
+        <rect width="180" height="60" class="service-box" rx="8" />
+        <text x="90" y="38" class="label">KYC Provider</text>
+    </g>
+    <g id="service-relayer" transform="translate(360, 400)">
+        <rect width="180" height="60" class="service-box" rx="8" />
+        <text x="90" y="38" class="label">zkSync Relayer</text>
+    </g>
+
+    <!-- Column 3: On-Chain Contracts -->
+    <text x="850" y="100" class="subtitle">On-Chain Contracts (zkSync)</text>
+    <g id="contract-kyc" transform="translate(750, 130)">
+        <rect width="220" height="60" class="contract-box" rx="8" />
+        <text x="110" y="38" class="label">KYCRegistry</text>
+    </g>
+    <g id="contract-manager" transform="translate(750, 220)">
+        <rect width="220" height="60" class="contract-box" rx="8" />
+        <text x="110" y="38" class="label">CustodyAttestationManager</text>
+    </g>
+    <g id="contract-token" transform="translate(750, 310)">
+        <rect width="220" height="60" class="contract-box" rx="8" />
+        <text x="110" y="38" class="label">GoldToken (BCG)</text>
+    </g>
+    <g id="contract-oracle" transform="translate(750, 400)">
+        <rect width="220" height="60" class="contract-box" rx="8" />
+        <text x="110" y="38" class="label">OracleAggregator</text>
+    </g>
+
+    <!-- Flows -->
+    <path d="M 150 190 V 250 H 360" fill="none" class="arrow-line" marker-end="url(#arrow)" />
+    <text x="255" y="235" class="flow-label">1. Deposit Gold</text>
+
+    <path d="M 360 250 H 280 V 175 H 240" fill="none" class="data-flow-line" marker-end="url(#arrow)" />
+    <text x="320" y="195" class="data-label">EIP-712 Attestation</text>
+
+    <path d="M 150 190 V 340 H 360" fill="none" class="arrow-line" marker-end="url(#arrow)" />
+    <text x="255" y="325" class="flow-label">2. Complete KYC</text>
+
+    <path d="M 540 340 H 650 V 160 H 750" fill="none" class="data-flow-line" marker-end="url(#arrow)" />
+    <text x="650" y="245" class="data-label">Merkle Root</text>
+    <text x="650" y="225" class="flow-label">3. Update Root</text>
+    
+    <path d="M 240 160 H 750" fill="none" class="arrow-line" marker-end="url(#arrow)" />
+    <text x="500" y="150" class="flow-label">4. Submit KYC Proof &amp; Mint Request</text>
+
+    <path d="M 750 160 V 250 H 540" fill="none" class="data-flow-line" marker-end="url(#arrow)" />
+    <text x="650" y="195" class="data-label">Merkle Proof</text>
+    
+    <path d="M 750 250 V 250 H 540" fill="none" class="data-flow-line" marker-end="url(#arrow)" />
+    <text x="650" y="280" class="data-label">Attestation</text>
+    
+    <path d="M 860 280 V 310" fill="none" class="arrow-line" marker-end="url(#arrow)" />
+    <text x="890" y="295" class="flow-label">5. mint()</text>
+    
+    <path d="M 860 370 C 950 450, 950 550, 860 650 C 750 650, 750 450, 860 370" stroke="#b0bec5" stroke-width="1.5" stroke-dasharray="4 4" fill="none" />
+    <text x="960" y="500" class="data-label">Trade / Use in DeFi</text>
+
+    <path d="M 860 370 V 400" fill="none" class="arrow-line" marker-end="url(#arrow)" />
+    <text x="890" y="385" class="flow-label">6. burn()</text>
+    
+    <path d="M 860 310 H 150" fill="none" class="data-flow-line" />
+    <text x="500" y="300" class="data-label">Receive BCG Tokens</text>
+</svg>
