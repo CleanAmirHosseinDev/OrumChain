@@ -7,7 +7,7 @@
     "test": "npx hardhat test",
     "compile": "npx hardhat compile",
     "deploy:testnet": "npx hardhat deploy-zksync --script scripts/deploy/deploy-all.js --network zkSyncTestnet",
-    "lint": "npx solhint 'contracts/**/*.sol'",
+    "lint": "npx solhint contracts/**/*.sol",
     "slither": "slither . --solc-remaps \"@openzeppelin=node_modules/@openzeppelin\""
   },
   "keywords": [

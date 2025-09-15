@@ -1,0 +1,29 @@
+{
+  "extends": "solhint:recommended",
+  "plugins": [],
+  "env": {
+    "browser": false,
+    "node": true
+  },
+  "rules": {
+    "compiler-version": ["error", "^0.8.17"],
+    "func-visibility": ["error", { "ignoreConstructors": true }],
+    "no-global-import": "warn",
+    "import-path-check": "warn",
+    "use-natspec": ["warn", {
+      "notice": true,
+      "param": true,
+      "return": true
+    }],
+    "reason-string": ["warn", { "maxLength": 32 }],
+    "immutable-vars-naming": "warn",
+    "gas-indexed-events": "warn",
+    "gas-small-strings": "warn",
+    "gas-custom-errors": "warn",
+    "no-empty-blocks": "warn",
+    "explicit-types": "warn",
+    "gas-strict-inequalities": "warn",
+    "gas-increment-by-one": "warn",
+    "no-unused-vars": "warn"
+  }
+}
