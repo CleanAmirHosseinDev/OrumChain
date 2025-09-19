@@ -3,12 +3,10 @@ const { ethers } = require("hardhat");
 const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
 // Note: The main fixture would need to be extended to deploy the options contracts.
 const { deployContractsFixture } = require("./shared/fixtures");
-//const { deployContractsFixture } = require("./shared/fixtures");
 
 // These tests are skipped as the contracts are just skeletons.
 // They serve as a blueprint for future implementation.
 describe.skip("Option Module", function () {
-
   async function deployOptionModuleFixture() {
     const baseFixture = await loadFixture(deployContractsFixture);
 
@@ -77,7 +75,7 @@ describe.skip("Option Module", function () {
         // 9. Expect the option tokens to be burned
       });
 
-       it.skip("should correctly settle an out-of-the-money call option", async function () {
+      it.skip("should correctly settle an out-of-the-money call option", async function () {
         // 1. Same setup as above
         // 2. Set the oracle price to be below the strike price
         // 3. Call settleExpiredOption
@@ -87,16 +85,16 @@ describe.skip("Option Module", function () {
       });
     });
 
-     describe("Liquidation", function () {
-        it.skip("should allow a liquidator to liquidate an under-collateralized position", async function () {
-            // 1. A seller opens a short position
-            // 2. The value of the underlying asset increases dramatically (mocked via oracle)
-            // 3. The seller's position is now under-collateralized
-            // 4. A liquidator calls liquidatePosition
-            // 5. Expect the seller's position to be closed
-            // 6. Expect the seller's collateral to be seized
-            // 7. Expect the liquidator to receive a portion of the seized collateral as a fee
-        });
-     });
+    describe("Liquidation", function () {
+      it.skip("should allow a liquidator to liquidate an under-collateralized position", async function () {
+        // 1. A seller opens a short position
+        // 2. The value of the underlying asset increases dramatically (mocked via oracle)
+        // 3. The seller's position is now under-collateralized
+        // 4. A liquidator calls liquidatePosition
+        // 5. Expect the seller's position to be closed
+        // 6. Expect the seller's collateral to be seized
+        // 7. Expect the liquidator to receive a portion of the seized collateral as a fee
+      });
+    });
   });
 });

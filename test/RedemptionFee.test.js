@@ -1,7 +1,6 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
-//const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
 
 describe("Redemption Fee Logic", function () {
   // We define a fixture to reuse the same setup in every test.
