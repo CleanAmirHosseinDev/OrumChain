@@ -3,7 +3,7 @@ const { ethers } = require("hardhat");
 const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
 const { deployContractsFixture } = require("./shared/fixtures");
 const keccak256 = require("keccak256");
-
+//const keccak256 = require("keccak256");
 describe("GoldToken System", function () {
   const ONE_HUNDRED_TOKENS = ethers.utils.parseUnits("100.0", 18);
 
