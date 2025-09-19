@@ -4,6 +4,7 @@ const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
 const { deployContractsFixture } = require("./shared/fixtures");
 const { MerkleTree } = require("merkletreejs");
 const keccak256 = require("keccak256");
+//const keccak256 = require("keccak256");
 
 describe("KYCRegistry", function () {
   describe("Root Management", function () {
