@@ -2,6 +2,7 @@ const { expect } = require("chai");
 const { ethers } = require("hardhat");
 const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
 const { deployContractsFixture } = require("./shared/fixtures");
+//const { deployContractsFixture } = require("./shared/fixtures");
 
 describe("OracleAggregator", function () {
   const getOracleSignature = async (oracleSigner, contractAddress, price, timestamp) => {
